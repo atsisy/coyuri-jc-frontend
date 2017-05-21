@@ -12,7 +12,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setFullScreen(true);
+        stage.setWidth(1366);
+        stage.setHeight(768);
 
         AnchorPane root = new AnchorPane();
 

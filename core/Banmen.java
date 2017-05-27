@@ -11,18 +11,23 @@ import static config.Values.*;
 public class Banmen {
 
     private Square[][] ban;
+    private int[][] system_ban;
 
     public Banmen(){
+
         ban = new Square[9][9];
+        system_ban = new int[9][9];
         for(int x = 0;x < 9;x++){
             for(int y = 0;y < 9;y++){
-                ban[x][y] = new Square(70, 70);
+                ban[x][y] = new Square(this, 70, 70);
+                system_ban[x][y] = EMPTY;
             }
         }
 
         for(int y = 1;y <= 9;y++){
             for(int x = 1;x <= 9;x++){
                 redraw(x, y, Values.EMPTY);
+                ban[9-x][y-1].set_masume(x, y);
             }
         }
 
@@ -61,10 +66,15 @@ public class Banmen {
 
     void redraw(int x, int y, int koma_type){
         ban[9-x][y-1].drawImage(Main.image.getImage(koma_type));
+        system_ban[9-x][y-1] = koma_type;
     }
 
     public Square edit(int x, int y){
         return ban[x][y];
+    }
+
+    public int get_system_ban_value(int x, int y){
+        return system_ban[9-x][y-1];
     }
 
     public void register(AnchorPane root){

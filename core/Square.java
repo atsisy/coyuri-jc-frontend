@@ -5,16 +5,28 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import static config.Values.HU;
+
 /**
  * Created by Akihiro on 2017/05/21.
  */
 public class Square {
     private Canvas canvas;
     private GraphicsContext graphicsContext;
+    private Masume masume;
 
-    public Square(double width, double height){
+    public Square(Banmen ban, double width, double height){
         canvas = new Canvas(width, height);
         graphicsContext = canvas.getGraphicsContext2D();
+
+        canvas.setOnMouseClicked(event -> {
+            if(ban.get_system_ban_value(masume.getX(), masume.getY()) == HU){
+                System.out.println("a");
+                Wcm.pl_hu_wcm(ban, masume).forEach(masume1 -> {
+                    System.out.println(masume1.getX() + ":" + masume1.getY());
+                });
+            }
+        });
     }
 
     public Canvas getCanvas() {
@@ -41,5 +53,9 @@ public class Square {
 
     public void drawImage(Image image){
         graphicsContext.drawImage(image, 0, 0);
+    }
+
+    public void set_masume(int x, int y){
+        masume = new Masume(x, y);
     }
 }

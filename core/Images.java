@@ -14,7 +14,7 @@ public class Images {
     private Image[] images;
 
     public Images(){
-        images = new Image[30];
+        images = new Image[31];
 
         	/*
 	*駒が置かれていない

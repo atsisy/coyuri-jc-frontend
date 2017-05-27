@@ -45,5 +45,4 @@ public class Values {
     public static final int TEGOMA = 30;
 
 
-
 }

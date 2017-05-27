@@ -11,6 +11,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+    public static final Images image = new Images();
+
     @Override
     public void start(Stage stage) {
         stage.setWidth(1366);
@@ -18,14 +20,6 @@ public class Main extends Application {
 
         AnchorPane root = new AnchorPane();
         Banmen banmen = new Banmen();
-
-        final Images image = new Images();
-
-        for(int i = 0;i < 9;i++){
-            for(int n = 0;n < 9;n++){
-                banmen.edit(i, n).drawImage(image.getImage(Values.EMPTY));
-            }
-        }
 
         banmen.register(root);
 

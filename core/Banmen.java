@@ -112,4 +112,11 @@ public class Banmen {
         }
     }
 
+    boolean is_empty(Masume masume){
+        return system_ban[9 - masume.getX()][masume.getY() - 1] == EMPTY;
+    }
+
+    boolean is_empty(int x, int y){
+        return system_ban[9 - x][y - 1] == EMPTY;
+    }
 }

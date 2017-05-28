@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 import static config.Values.HU;
+import static config.Values.KYOUSHA;
 import static config.Values.TARGET;
 
 /**
@@ -26,6 +27,8 @@ public class Square {
                 case HU:
                     ban.mark_target(Wcm.pl_hu_wcm(ban, masume));
                     break;
+                case KYOUSHA:
+                    ban.mark_target(Wcm.pl_kyousha_wcm(ban, masume));
                 default:
                      break;
             }

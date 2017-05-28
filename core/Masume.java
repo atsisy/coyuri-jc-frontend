@@ -13,6 +13,10 @@ public class Masume {
         this.y = y;
     }
 
+    public boolean is_safe(){
+        return (x >= 1 && x <= 9) && (y >= 1 && y <= 9);
+    }
+
     public int getX() {
         return x;
     }

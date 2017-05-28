@@ -5,9 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-import static config.Values.HU;
-import static config.Values.KYOUSHA;
-import static config.Values.TARGET;
+import static config.Values.*;
 
 /**
  * Created by Akihiro on 2017/05/21.
@@ -29,6 +27,8 @@ public class Square {
                     break;
                 case KYOUSHA:
                     ban.mark_target(Wcm.pl_kyousha_wcm(ban, masume));
+                case KEIMA:
+                    ban.mark_target(Wcm.pl_keima_wcm(ban, masume));
                 default:
                      break;
             }

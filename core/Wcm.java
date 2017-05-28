@@ -15,7 +15,7 @@ public class Wcm {
 
     public static ArrayList<Masume> pl_hu_wcm(Banmen ban, Masume current){
         ArrayList<Masume> result = new ArrayList<>();
-        if(ban.is_empty(current.getX(), current.getY() - 1)){
+        if(isMovable(ban, new Masume(current.getX(), current.getY() - 1))){
             result.add(new Masume(current.getX(), current.getY() - 1));
         }
         return result;
@@ -27,11 +27,22 @@ public class Wcm {
             if(ban.is_empty(current.getX(), y)){
                 result.add(new Masume(current.getX(), y));
             }else{
-                if(isAIs(ban, new Masume(current.getX(), y))){
+                if(isMovable(ban, new Masume(current.getX(), y))){
                      result.add(new Masume(current.getX(), y));
                 }
                 break;
             }
+        }
+        return result;
+    }
+
+    public static ArrayList<Masume> pl_keima_wcm(Banmen ban, Masume masume){
+        ArrayList<Masume> result = new ArrayList<>();
+        if(isMovable(ban, new Masume(masume.getX() - 1, masume.getY() - 2))){
+            result.add(new Masume(masume.getX() - 1, masume.getY() - 2));
+        }
+        if(isMovable(ban, new Masume(masume.getX() + 1, masume.getY() - 2))){
+            result.add(new Masume(masume.getX() + 1, masume.getY() - 2));
         }
         return result;
     }
@@ -42,6 +53,13 @@ public class Wcm {
 
     private static boolean isAIs(Banmen ban, Masume masume){
         return ban.get_system_ban_value(masume.getX(), masume.getY()) >= EN_HU && ban.get_system_ban_value(masume.getX(), masume.getY()) <= EN_OU;
+    }
+
+    private static boolean isMovable(Banmen ban, Masume masume){
+        if(!masume.is_safe()){
+            return false;
+        }
+        return isAIs(ban, masume) || ban.is_empty(masume);
     }
 
 }

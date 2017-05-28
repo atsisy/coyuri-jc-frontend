@@ -3,6 +3,8 @@ package core;
 import config.Values;
 import javafx.scene.layout.AnchorPane;
 
+import java.util.ArrayList;
+
 import static config.Values.*;
 
 /**
@@ -12,11 +14,14 @@ public class Banmen {
 
     private Square[][] ban;
     private int[][] system_ban;
+    private ArrayList<Masume> target_masume_list;
 
     public Banmen(){
 
         ban = new Square[9][9];
         system_ban = new int[9][9];
+        target_masume_list = null;
+
         for(int x = 0;x < 9;x++){
             for(int y = 0;y < 9;y++){
                 ban[x][y] = new Square(this, 70, 70);
@@ -69,6 +74,11 @@ public class Banmen {
         system_ban[9-x][y-1] = koma_type;
     }
 
+    void redraw(Masume masume, int koma_type){
+        ban[9-masume.getX()][masume.getY()-1].drawImage(Main.image.getImage(koma_type));
+        system_ban[9-masume.getX()][masume.getY()-1] = koma_type;
+    }
+
     public Square edit(int x, int y){
         return ban[x][y];
     }
@@ -84,6 +94,21 @@ public class Banmen {
                 AnchorPane.setLeftAnchor(ban[x][y].getCanvas(), x * 70.0);
                 AnchorPane.setTopAnchor(ban[x][y].getCanvas(), y * 70.0);
             }
+        }
+    }
+
+    public void mark_target(ArrayList<Masume> list){
+        target_masume_list = list;
+        target_masume_list.forEach(masume -> {
+            ban[9-masume.getX()][masume.getY()-1].drawImage(Main.image.getImage(TARGET));
+        });
+    }
+
+    void clear_target_mark(){
+        if(target_masume_list != null) {
+            target_masume_list.forEach(masume -> {
+                redraw(masume, system_ban[9 - masume.getX()][masume.getY() - 1]);
+            });
         }
     }
 

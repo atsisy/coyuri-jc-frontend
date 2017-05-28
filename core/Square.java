@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 import static config.Values.HU;
+import static config.Values.TARGET;
 
 /**
  * Created by Akihiro on 2017/05/21.
@@ -20,11 +21,13 @@ public class Square {
         graphicsContext = canvas.getGraphicsContext2D();
 
         canvas.setOnMouseClicked(event -> {
-            if(ban.get_system_ban_value(masume.getX(), masume.getY()) == HU){
-                System.out.println("a");
-                Wcm.pl_hu_wcm(ban, masume).forEach(masume1 -> {
-                    System.out.println(masume1.getX() + ":" + masume1.getY());
-                });
+            ban.clear_target_mark();
+            switch (ban.get_system_ban_value(masume.getX(), masume.getY())){
+                case HU:
+                    ban.mark_target(Wcm.pl_hu_wcm(ban, masume));
+                    break;
+                default:
+                     break;
             }
         });
     }

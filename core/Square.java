@@ -34,6 +34,8 @@ public class Square {
                 case GIN:
                     ban.mark_target(Wcm.pl_gin_wcm(ban, masume));
                     break;
+                case KIN:
+                    ban.mark_target(Wcm.pl_kin_wcm(ban, masume));
                 default:
                      break;
             }

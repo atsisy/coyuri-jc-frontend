@@ -79,6 +79,44 @@ public class Wcm {
         return result;
     }
 
+    public static ArrayList<Masume> pl_kin_wcm(Banmen ban, Masume masume){
+        ArrayList<Masume> result = new ArrayList<>();
+
+        //正面
+        if(isMovable(ban, new Masume(masume.getX(), masume.getY() - 1))){
+            result.add(new Masume(masume.getX(), masume.getY() - 1));
+        }
+
+        //右斜め上
+        if(isMovable(ban, new Masume(masume.getX() - 1, masume.getY() - 1))){
+            result.add(new Masume(masume.getX() - 1, masume.getY() - 1));
+        }
+
+        //左斜め上
+        if(isMovable(ban, new Masume(masume.getX() + 1, masume.getY() - 1))){
+            result.add(new Masume(masume.getX() + 1, masume.getY() - 1));
+        }
+
+        //右
+        if(isMovable(ban, new Masume(masume.getX() - 1, masume.getY()))){
+            result.add(new Masume(masume.getX() - 1, masume.getY()));
+        }
+
+        //左
+        if(isMovable(ban, new Masume(masume.getX() + 1, masume.getY()))){
+            result.add(new Masume(masume.getX() + 1, masume.getY()));
+        }
+
+        //後ろ
+        if(isMovable(ban, new Masume(masume.getX(), masume.getY() + 1))){
+            result.add(new Masume(masume.getX(), masume.getY() + 1));
+        }
+
+
+        return result;
+    }
+
+
     private static boolean isMine(Banmen ban, Masume masume){
         return ban.get_system_ban_value(masume.getX(), masume.getY()) >= HU && ban.get_system_ban_value(masume.getX(), masume.getY()) <= OU;
     }

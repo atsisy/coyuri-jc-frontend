@@ -36,6 +36,8 @@ public class Square {
                     break;
                 case KIN:
                     ban.mark_target(Wcm.pl_kin_wcm(ban, masume));
+                case OU:
+                    ban.mark_target(Wcm.pl_ou_wcm(ban, masume));
                 default:
                      break;
             }

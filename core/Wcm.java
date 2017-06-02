@@ -163,6 +163,41 @@ public class Wcm {
         return result;
     }
 
+    public static ArrayList<Masume> pl_hisha_wcm(Banmen ban, Masume masume){
+        ArrayList<Masume> result = new ArrayList<>();
+
+        int i = 1;
+
+        //上方向
+        while(isMovable(ban, new Masume(masume.getX(), masume.getY() - i))){
+            result.add(new Masume(masume.getX(), masume.getY() - i));
+            i++;
+        }
+
+        i = 1;
+        //下方向
+        while(isMovable(ban, new Masume(masume.getX(), masume.getY() + i))){
+            result.add(new Masume(masume.getX(), masume.getY() + i));
+            i++;
+        }
+
+        i = 1;
+        //右方向
+        while(isMovable(ban, new Masume(masume.getX() - i, masume.getY()))){
+            result.add(new Masume(masume.getX() - i, masume.getY()));
+            i++;
+        }
+
+        i = 1;
+        //左方向
+        while(isMovable(ban, new Masume(masume.getX() + i, masume.getY()))){
+            result.add(new Masume(masume.getX() + i, masume.getY()));
+            i++;
+        }
+
+        return result;
+    }
+
 
     private static boolean isMine(Banmen ban, Masume masume){
         return ban.get_system_ban_value(masume.getX(), masume.getY()) >= HU && ban.get_system_ban_value(masume.getX(), masume.getY()) <= OU;

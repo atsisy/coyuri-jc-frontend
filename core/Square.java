@@ -27,8 +27,13 @@ public class Square {
                     break;
                 case KYOUSHA:
                     ban.mark_target(Wcm.pl_kyousha_wcm(ban, masume));
+                    break;
                 case KEIMA:
                     ban.mark_target(Wcm.pl_keima_wcm(ban, masume));
+                    break;
+                case GIN:
+                    ban.mark_target(Wcm.pl_gin_wcm(ban, masume));
+                    break;
                 default:
                      break;
             }

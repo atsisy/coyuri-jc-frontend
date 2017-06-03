@@ -25,6 +25,7 @@ public class Square {
             if(ban.is_targeted(masume)){
                 ban.move(masume);
                 ban.sync();
+                ban.mark_target(new ArrayList<>());
             }else {
                 ban.clear_target_mark();
                 switch (ban.get_system_ban_value(masume.getX(), masume.getY())) {
@@ -58,14 +59,18 @@ public class Square {
                         break;
                     case RYU:
                         ban.mark_target(Wcm.pl_ryu_wcm(ban, masume));
+                        ban.hold_koma(RYU, masume);
                         break;
                     case UMA:
                         ban.mark_target(Wcm.pl_uma_wcm(ban, masume));
+                        ban.hold_koma(UMA, masume);
                     case OU:
                         ban.mark_target(Wcm.pl_ou_wcm(ban, masume));
+                        ban.hold_koma(OU, masume);
                         break;
                     default:
                         ban.mark_target(new ArrayList<>());
+                        ban.clear_holding();
                         break;
                 }
             }

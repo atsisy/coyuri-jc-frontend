@@ -154,6 +154,10 @@ public class Banmen {
 
     }
 
+    void clear_holding(){
+        holding_koma = -1;
+    }
+
     boolean is_empty(Masume masume){
         return system_ban[9 - masume.getX()][masume.getY() - 1] == EMPTY;
     }

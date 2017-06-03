@@ -5,6 +5,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+
 import static config.Values.*;
 
 /**
@@ -20,36 +22,52 @@ public class Square {
         graphicsContext = canvas.getGraphicsContext2D();
 
         canvas.setOnMouseClicked(event -> {
-            ban.clear_target_mark();
-            switch (ban.get_system_ban_value(masume.getX(), masume.getY())){
-                case HU:
-                    ban.mark_target(Wcm.pl_hu_wcm(ban, masume));
-                    break;
-                case KYOUSHA:
-                    ban.mark_target(Wcm.pl_kyousha_wcm(ban, masume));
-                    break;
-                case KEIMA:
-                    ban.mark_target(Wcm.pl_keima_wcm(ban, masume));
-                    break;
-                case GIN:
-                    ban.mark_target(Wcm.pl_gin_wcm(ban, masume));
-                    break;
-                case KIN:
-                    ban.mark_target(Wcm.pl_kin_wcm(ban, masume));
-                    break;
-                case HISHA:
-                    ban.mark_target(Wcm.pl_hisha_wcm(ban, masume));
-                    break;
-                case KAKU:
-                    ban.mark_target(Wcm.pl_kaku_wcm(ban, masume));
-                    break;
-                case RYU:
-                    ban.mark_target(Wcm.pl_ryu_wcm(ban, masume));
-                case OU:
-                    ban.mark_target(Wcm.pl_ou_wcm(ban, masume));
-                    break;
-                default:
-                     break;
+            if(ban.is_targeted(masume)){
+                ban.move(masume);
+                ban.sync();
+            }else {
+                ban.clear_target_mark();
+                switch (ban.get_system_ban_value(masume.getX(), masume.getY())) {
+                    case HU:
+                        ban.mark_target(Wcm.pl_hu_wcm(ban, masume));
+                        ban.hold_koma(HU, masume);
+                        break;
+                    case KYOUSHA:
+                        ban.mark_target(Wcm.pl_kyousha_wcm(ban, masume));
+                        ban.hold_koma(KYOUSHA, masume);
+                        break;
+                    case KEIMA:
+                        ban.mark_target(Wcm.pl_keima_wcm(ban, masume));
+                        ban.hold_koma(KEIMA, masume);
+                        break;
+                    case GIN:
+                        ban.mark_target(Wcm.pl_gin_wcm(ban, masume));
+                        ban.hold_koma(GIN, masume);
+                        break;
+                    case KIN:
+                        ban.mark_target(Wcm.pl_kin_wcm(ban, masume));
+                        ban.hold_koma(KIN, masume);
+                        break;
+                    case HISHA:
+                        ban.mark_target(Wcm.pl_hisha_wcm(ban, masume));
+                        ban.hold_koma(HISHA, masume);
+                        break;
+                    case KAKU:
+                        ban.mark_target(Wcm.pl_kaku_wcm(ban, masume));
+                        ban.hold_koma(KAKU, masume);
+                        break;
+                    case RYU:
+                        ban.mark_target(Wcm.pl_ryu_wcm(ban, masume));
+                        break;
+                    case UMA:
+                        ban.mark_target(Wcm.pl_uma_wcm(ban, masume));
+                    case OU:
+                        ban.mark_target(Wcm.pl_ou_wcm(ban, masume));
+                        break;
+                    default:
+                        ban.mark_target(new ArrayList<>());
+                        break;
+                }
             }
         });
     }

@@ -15,12 +15,16 @@ public class Banmen {
     private Square[][] ban;
     private int[][] system_ban;
     private ArrayList<Masume> target_masume_list;
+    private int holding_koma;
+    private Masume holding_koma_s_masume;
 
     public Banmen(){
 
         ban = new Square[9][9];
         system_ban = new int[9][9];
         target_masume_list = null;
+        holding_koma = -1;
+        holding_koma_s_masume = new Masume(0, 0);
 
         for(int x = 0;x < 9;x++){
             for(int y = 0;y < 9;y++){
@@ -110,6 +114,44 @@ public class Banmen {
                 redraw(masume, system_ban[9 - masume.getX()][masume.getY() - 1]);
             });
         }
+    }
+
+    void sync(){
+        for(int y = 1;y <= 9;y++){
+            for(int x = 1;x <= 9;x++){
+                redraw(x, y, system_ban[9 - x][y - 1]);
+            }
+        }
+    }
+
+    void hold_koma(int koma, Masume masume){
+        holding_koma = koma;
+        holding_koma_s_masume = masume;
+    }
+
+    boolean is_targeted(Masume masume){
+        if(target_masume_list == null){
+            return false;
+        }
+        for(Masume m : target_masume_list){
+            if(m.equals(masume)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean is_holding(){
+        return holding_koma != -1;
+    }
+
+    void move(Masume masume){
+        if(!is_holding()){
+            return;
+        }
+        system_ban[9 - masume.getX()][masume.getY() - 1] = holding_koma;
+        system_ban[9 - holding_koma_s_masume.getX()][holding_koma_s_masume.getY() - 1] = EMPTY;
+
     }
 
     boolean is_empty(Masume masume){

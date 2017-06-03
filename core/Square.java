@@ -23,9 +23,20 @@ public class Square {
 
         canvas.setOnMouseClicked(event -> {
             if(ban.is_targeted(masume)){
+                //内部データを動かした状態にする。
                 ban.move(masume);
+
+                //描画状態を同期
                 ban.sync();
+
+                //マークするターゲットのリストを空にしたい
                 ban.mark_target(new ArrayList<>());
+
+                //手数を一つ増やす
+                ban.increase_tesuu();
+
+                //描画処理等が終わったので。AIを走らせる
+                ban.run_ai();
             }else {
                 ban.clear_target_mark();
                 switch (ban.get_system_ban_value(masume.getX(), masume.getY())) {

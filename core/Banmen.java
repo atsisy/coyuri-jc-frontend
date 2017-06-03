@@ -3,6 +3,10 @@ package core;
 import config.Values;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import static config.Values.*;
@@ -17,6 +21,7 @@ public class Banmen {
     private ArrayList<Masume> target_masume_list;
     private int holding_koma;
     private Masume holding_koma_s_masume;
+    private long tesuu;
 
     public Banmen(){
 
@@ -25,6 +30,7 @@ public class Banmen {
         target_masume_list = null;
         holding_koma = -1;
         holding_koma_s_masume = new Masume(0, 0);
+        tesuu = 0;
 
         for(int x = 0;x < 9;x++){
             for(int y = 0;y < 9;y++){
@@ -124,6 +130,41 @@ public class Banmen {
         }
     }
 
+    void run_ai(){
+        write_data();
+        ArrayList<String> bin_command = new ArrayList<>();
+        bin_command.add("/home/takai/a.out");
+        ReadCoyuriBanmen.read_coyuri_input_stream(bin_command).forEach(System.out::println);
+        increase_tesuu();
+    }
+
+    private void write_data(){
+        try {
+            //上書きモードでファイル作成
+            FileWriter fileWriter = new FileWriter("./banmen.coyuri", false);
+            PrintWriter printWriter = new PrintWriter(new BufferedWriter(fileWriter));
+
+            //手数を出力
+            printWriter.println(tesuu);
+
+            //書き込み
+            for(int i = 0;i < 9;i++) {
+                for(int j = 0;j < 9;j++) {
+                    printWriter.print(system_ban[j][i]);
+                    printWriter.print(" ");
+                }
+                printWriter.print('\n');
+            }
+
+            //flush
+            printWriter.close();
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     void hold_koma(int koma, Masume masume){
         holding_koma = koma;
         holding_koma_s_masume = masume;
@@ -164,5 +205,9 @@ public class Banmen {
 
     boolean is_empty(int x, int y){
         return system_ban[9 - x][y - 1] == EMPTY;
+    }
+
+    void increase_tesuu(){
+        tesuu++;
     }
 }

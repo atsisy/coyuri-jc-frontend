@@ -165,33 +165,46 @@ public class Wcm {
 
     public static ArrayList<Masume> pl_hisha_wcm(Banmen ban, Masume masume){
         ArrayList<Masume> result = new ArrayList<>();
+        Masume i_t_i;
 
         int i = 1;
 
         //上方向
-        while(isMovable(ban, new Masume(masume.getX(), masume.getY() - i))){
-            result.add(new Masume(masume.getX(), masume.getY() - i));
+        while(isMovable(ban, i_t_i = new Masume(masume.getX(), masume.getY() - i))){
+            result.add(i_t_i);
+            if(isAIs(ban, i_t_i)){
+                break;
+            }
             i++;
         }
 
         i = 1;
         //下方向
-        while(isMovable(ban, new Masume(masume.getX(), masume.getY() + i))){
-            result.add(new Masume(masume.getX(), masume.getY() + i));
+        while(isMovable(ban, i_t_i = new Masume(masume.getX(), masume.getY() + i))){
+            result.add(i_t_i);
+            if(isAIs(ban, i_t_i)) {
+                break;
+            }
             i++;
         }
 
         i = 1;
         //右方向
-        while(isMovable(ban, new Masume(masume.getX() - i, masume.getY()))){
-            result.add(new Masume(masume.getX() - i, masume.getY()));
+        while(isMovable(ban, i_t_i = new Masume(masume.getX() - i, masume.getY()))){
+            result.add(i_t_i);
+            if(isAIs(ban, i_t_i)) {
+                break;
+            }
             i++;
         }
 
         i = 1;
         //左方向
-        while(isMovable(ban, new Masume(masume.getX() + i, masume.getY()))){
-            result.add(new Masume(masume.getX() + i, masume.getY()));
+        while(isMovable(ban, i_t_i = new Masume(masume.getX() + i, masume.getY()))){
+            result.add(i_t_i);
+            if(isAIs(ban, i_t_i)) {
+                break;
+            }
             i++;
         }
 

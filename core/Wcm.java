@@ -293,6 +293,65 @@ public class Wcm {
         return result;
     }
 
+    public static ArrayList<Masume> pl_uma_wcm(Banmen ban, Masume masume){
+        ArrayList<Masume> result = new ArrayList<>();
+
+        int i = 1, j = 1;
+
+        //右斜め上方向
+        while(isMovable(ban, new Masume(masume.getX() - j, masume.getY() - i))){
+            result.add(new Masume(masume.getX() - j, masume.getY() - i));
+            i++;
+            j++;
+        }
+
+        i = j = 1;
+        //左斜め上方向
+        while(isMovable(ban, new Masume(masume.getX() + j, masume.getY() - i))){
+            result.add(new Masume(masume.getX() + j, masume.getY() - i));
+            i++;
+            j++;
+        }
+
+        i = j = 1;
+        //右斜め下方向
+        while(isMovable(ban, new Masume(masume.getX() - j, masume.getY() + i))){
+            result.add(new Masume(masume.getX() - j, masume.getY() + i));
+            i++;
+            j++;
+        }
+
+        i = j =1;
+        //左方向
+        while(isMovable(ban, new Masume(masume.getX() + j, masume.getY() + i))){
+            result.add(new Masume(masume.getX() + j, masume.getY() + i));
+            i++;
+            j++;
+        }
+
+        //正面
+        if(isMovable(ban, new Masume(masume.getX(), masume.getY() - 1))){
+            result.add(new Masume(masume.getX(), masume.getY() - 1));
+        }
+
+        //右
+        if(isMovable(ban, new Masume(masume.getX() - 1, masume.getY()))){
+            result.add(new Masume(masume.getX() - 1, masume.getY()));
+        }
+
+        //左
+        if(isMovable(ban, new Masume(masume.getX() + 1, masume.getY()))){
+            result.add(new Masume(masume.getX() + 1, masume.getY()));
+        }
+
+        //後ろ
+        if(isMovable(ban, new Masume(masume.getX(), masume.getY() + 1))){
+            result.add(new Masume(masume.getX(), masume.getY() + 1));
+        }
+
+        return result;
+    }
+
 
     private static boolean isMine(Banmen ban, Masume masume){
         return ban.get_system_ban_value(masume.getX(), masume.getY()) >= HU && ban.get_system_ban_value(masume.getX(), masume.getY()) <= OU;

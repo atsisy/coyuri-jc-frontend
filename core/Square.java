@@ -43,6 +43,8 @@ public class Square {
                 case KAKU:
                     ban.mark_target(Wcm.pl_kaku_wcm(ban, masume));
                     break;
+                case RYU:
+                    ban.mark_target(Wcm.pl_ryu_wcm(ban, masume));
                 case OU:
                     ban.mark_target(Wcm.pl_ou_wcm(ban, masume));
                     break;

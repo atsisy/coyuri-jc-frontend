@@ -1,6 +1,10 @@
 package core;
 
 import config.Values;
+import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.BufferedWriter;
@@ -8,8 +12,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import static config.Values.*;
+import static core.ReadCoyuriBanmen.read_coyuri_input_stream;
+import static java.lang.Thread.sleep;
 
 /**
  * Created by Akihiro on 2017/05/21.
@@ -22,6 +29,7 @@ public class Banmen {
     private int holding_koma;
     private Masume holding_koma_s_masume;
     private long tesuu;
+    private boolean ready_to_ai;
 
     public Banmen(){
 
@@ -31,6 +39,7 @@ public class Banmen {
         holding_koma = -1;
         holding_koma_s_masume = new Masume(0, 0);
         tesuu = 0;
+        ready_to_ai = false;
 
         for(int x = 0;x < 9;x++){
             for(int y = 0;y < 9;y++){
@@ -77,6 +86,7 @@ public class Banmen {
         for(int i = 1;i <= 9;i++){
             redraw(i, 7, HU);
         }
+
     }
 
     void redraw(int x, int y, int koma_type){
@@ -122,9 +132,9 @@ public class Banmen {
         }
     }
 
-    void sync(){
-        for(int y = 1;y <= 9;y++){
-            for(int x = 1;x <= 9;x++){
+    void sync() {
+        for (int y = 1; y <= 9; y++) {
+            for (int x = 1; x <= 9; x++) {
                 redraw(x, y, system_ban[9 - x][y - 1]);
             }
         }
@@ -133,8 +143,17 @@ public class Banmen {
     void run_ai(){
         write_data();
         ArrayList<String> bin_command = new ArrayList<>();
-        bin_command.add("/home/takai/a.out");
-        ReadCoyuriBanmen.read_coyuri_input_stream(bin_command).forEach(System.out::println);
+        bin_command.add("./coyuri");
+        bin_command.add("./banmen.coyuri");
+        bin_command.add("./out.coyuri");
+        ArrayList<String> list = ReadCoyuriBanmen.read_coyuri_input_stream(bin_command);
+        for(int y = 0;y < 9;++y){
+            StringTokenizer stringTokenizer = new StringTokenizer(list.get(y));
+            for(int x = 0;x < 9;++x) {
+                this.system_ban[x][y] = Integer.valueOf(stringTokenizer.nextToken());
+            }
+        }
+        sync();
         increase_tesuu();
     }
 
@@ -210,4 +229,17 @@ public class Banmen {
     void increase_tesuu(){
         tesuu++;
     }
+
+    boolean is_ready_to_ai(){
+        return ready_to_ai;
+    }
+
+    void ready_ai(){
+        ready_to_ai = true;
+    }
+
+    void finish_ai(){
+        ready_to_ai = false;
+    }
+
 }

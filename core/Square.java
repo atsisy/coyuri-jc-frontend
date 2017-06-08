@@ -35,8 +35,8 @@ public class Square {
                 //手数を一つ増やす
                 ban.increase_tesuu();
 
-                //描画処理等が終わったので。AIを走らせる
-                ban.run_ai();
+                //描画処理等が終わったので。AIを実行してもいいことを伝える
+                ban.ready_ai();
             }else {
                 ban.clear_target_mark();
                 switch (ban.get_system_ban_value(masume.getX(), masume.getY())) {
@@ -85,6 +85,10 @@ public class Square {
                         break;
                 }
             }
+        });
+
+        canvas.setOnKeyPressed(event -> {
+            ban.redraw(masume.getX(), masume.getY(), ban.get_system_ban_value(masume.getX(), masume.getY()));
         });
     }
 

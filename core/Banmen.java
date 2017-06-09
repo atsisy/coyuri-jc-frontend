@@ -43,7 +43,7 @@ public class Banmen {
 
         for(int x = 0;x < 9;x++){
             for(int y = 0;y < 9;y++){
-                ban[x][y] = new Square(this, 70, 70);
+                ban[x][y] = new Square(this, M_SQUARE_WIDTH, M_SQUARE_HEIGHT);
                 system_ban[x][y] = EMPTY;
             }
         }
@@ -111,8 +111,8 @@ public class Banmen {
         for(int x = 0;x < 9;x++){
             for(int y = 0;y < 9;y++){
                 root.getChildren().add(ban[x][y].getCanvas());
-                AnchorPane.setLeftAnchor(ban[x][y].getCanvas(), x * 70.0);
-                AnchorPane.setTopAnchor(ban[x][y].getCanvas(), y * 70.0);
+                AnchorPane.setLeftAnchor(ban[x][y].getCanvas(), (x * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM);
+                AnchorPane.setTopAnchor(ban[x][y].getCanvas(), (y * M_SQUARE_HEIGHT) + TOP_FROM_BANMEN);
             }
         }
     }
@@ -143,7 +143,7 @@ public class Banmen {
     void run_ai(){
         write_data();
         ArrayList<String> bin_command = new ArrayList<>();
-        bin_command.add("./coyuri");
+        bin_command.add("./coyuri_jc_backend.exe");
         bin_command.add("./banmen.coyuri");
         bin_command.add("./out.coyuri");
         ArrayList<String> list = ReadCoyuriBanmen.read_coyuri_input_stream(bin_command);

@@ -44,5 +44,10 @@ public class Values {
     public static final int EN_OU = 29;
     public static final int TEGOMA = 30;
 
+    public static final double M_SQUARE_WIDTH = 60;
+    public static final double M_SQUARE_HEIGHT = 60;
+
+    public static final double TOP_FROM_BANMEN = 100;
+    public static final double LEFT_FROM_BANMEM = 400;
 
 }

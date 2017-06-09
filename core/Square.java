@@ -86,10 +86,6 @@ public class Square {
                 }
             }
         });
-
-        canvas.setOnKeyPressed(event -> {
-            ban.redraw(masume.getX(), masume.getY(), ban.get_system_ban_value(masume.getX(), masume.getY()));
-        });
     }
 
     public Canvas getCanvas() {
@@ -115,7 +111,7 @@ public class Square {
     }
 
     public void drawImage(Image image){
-        graphicsContext.drawImage(image, 0, 0);
+        graphicsContext.drawImage(image, 0, 0, M_SQUARE_WIDTH, M_SQUARE_HEIGHT);
     }
 
     public void set_masume(int x, int y){

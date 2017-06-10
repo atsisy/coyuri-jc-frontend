@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import static config.Values.*;
@@ -89,8 +90,8 @@ public class Banmen {
             redraw(i, 7, HU);
         }
 
-        ai_mochi = new MochiSpace(true);
-        pl_mochi = new MochiSpace(false);
+        ai_mochi = new MochiSpace(false);
+        pl_mochi = new MochiSpace(true);
 
     }
 
@@ -154,15 +155,39 @@ public class Banmen {
         bin_command.add("./coyuri_jc_backend.exe");
         bin_command.add("./banmen.coyuri");
         bin_command.add("./out.coyuri");
-        ArrayList<String> list = ReadCoyuriBanmen.read_coyuri_input_stream(bin_command);
-        for(int y = 0;y < 9;++y){
+
+        reload(ReadCoyuriBanmen.read_coyuri_input_stream(bin_command));
+
+        sync();
+        increase_tesuu();
+    }
+
+    private void reload(ArrayList<String> list){
+
+        int y;
+        for(y = 0;y < 9;++y){
             StringTokenizer stringTokenizer = new StringTokenizer(list.get(y));
             for(int x = 0;x < 9;++x) {
                 this.system_ban[x][y] = Integer.valueOf(stringTokenizer.nextToken());
             }
         }
-        sync();
-        increase_tesuu();
+
+        StringTokenizer stringTokenizer = new StringTokenizer(list.get(y));
+        stringTokenizer.nextToken();
+        ai_mochi.clear();
+        while(stringTokenizer.hasMoreTokens()){
+            ai_mochi.add_koma(Integer.valueOf(stringTokenizer.nextToken()));
+        }
+
+        stringTokenizer = new StringTokenizer(list.get(y + 1));
+        stringTokenizer.nextToken();
+        pl_mochi.clear();
+        while(stringTokenizer.hasMoreTokens()){
+            pl_mochi.add_koma(Integer.valueOf(stringTokenizer.nextToken()));
+        }
+
+        ai_mochi.redraw();
+        pl_mochi.redraw();
     }
 
     private void write_data(){
@@ -183,6 +208,11 @@ public class Banmen {
                 printWriter.print('\n');
             }
 
+            printWriter.print("ai_mochi ");
+            printWriter.println(ai_mochi.toString());
+
+            printWriter.print("pl_mochi ");
+            printWriter.println(pl_mochi.toString());
 
             //flush
             printWriter.close();

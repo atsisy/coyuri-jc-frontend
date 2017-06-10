@@ -65,4 +65,38 @@ public class MochiSpace {
         }
     }
 
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        if(who_am_i) {
+            for (int i = 0; i < 7; ++i) {
+                for (int j = 0; j < system_mochi[i]; ++j) {
+                    sb.append(i + HU);
+                    sb.append(" ");
+                }
+            }
+        }else{
+            for (int i = 0; i < 7; ++i) {
+                for (int j = 0; j < system_mochi[i]; ++j) {
+                    sb.append(i + EN_HU);
+                    sb.append(" ");
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    public void add_koma(int type){
+        if(who_am_i) {
+            system_mochi[type - HU]++;
+        }else{
+            system_mochi[type - EN_HU]++;
+        }
+    }
+
+    public void clear(){
+        for(int i = 0;i < 7;i++){
+            system_mochi[i] = 0;
+        }
+    }
+
 }

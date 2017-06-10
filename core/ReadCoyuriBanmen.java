@@ -17,6 +17,7 @@ public class ReadCoyuriBanmen {
         ProcessBuilder pb = new ProcessBuilder(command);
 
         try {
+
             Process process = pb.start();
             try {
                 process.waitFor();
@@ -25,6 +26,7 @@ public class ReadCoyuriBanmen {
             }
             InputStream is = process.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
             try{
                 do{
                     String line = br.readLine();
@@ -36,6 +38,7 @@ public class ReadCoyuriBanmen {
             }catch (Exception e){
                 System.err.println(e);
             }
+
         }catch (IOException e){
             System.err.println(e);
         }

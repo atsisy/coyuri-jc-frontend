@@ -312,6 +312,20 @@ public class Wcm {
         return result;
     }
 
+    public static ArrayList<Masume> mochigoma_wcm(Banmen ban){
+        ArrayList<Masume> result = new ArrayList<>();
+
+        for(int x = 1;x <= 9;x++){
+            for(int y = 1;y <= 9;y++){
+                if(ban.get_system_ban_value(x, y) == EMPTY){
+                    result.add(new Masume(x, y));
+                }
+            }
+        }
+
+        return result;
+    }
+
 
     private static boolean isMine(Banmen ban, Masume masume){
         return ban.get_system_ban_value(masume.getX(), masume.getY()) >= HU && ban.get_system_ban_value(masume.getX(), masume.getY()) <= OU;

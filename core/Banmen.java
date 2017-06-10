@@ -90,8 +90,8 @@ public class Banmen {
             redraw(i, 7, HU);
         }
 
-        ai_mochi = new MochiSpace(false);
-        pl_mochi = new MochiSpace(true);
+        ai_mochi = new MochiSpace(this, false);
+        pl_mochi = new MochiSpace(this, true);
 
     }
 
@@ -246,6 +246,10 @@ public class Banmen {
     void move(Masume masume){
         if(!is_holding()){
             return;
+        }
+        if(system_ban[9 - masume.getX()][masume.getY() - 1] != EMPTY){
+            pl_mochi.add_koma(system_ban[9 - masume.getX()][masume.getY() - 1] - (EN_HU - HU));
+            pl_mochi.redraw();
         }
         system_ban[9 - masume.getX()][masume.getY() - 1] = holding_koma;
         system_ban[9 - holding_koma_s_masume.getX()][holding_koma_s_masume.getY() - 1] = EMPTY;

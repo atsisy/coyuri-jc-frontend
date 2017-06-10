@@ -19,12 +19,12 @@ public class MochiSpace {
     //持ち駒の内部処理用の配列
     private int[] system_mochi;
 
-    public MochiSpace(boolean flag){
+    public MochiSpace(Banmen ban, boolean flag){
         spaces = new MochiSquare[7];
         system_mochi = new int[7];
 
         for(int i = 0;i < 7;++i){
-            spaces[i] = new MochiSquare(M_SQUARE_WIDTH, M_SQUARE_HEIGHT);
+            spaces[i] = new MochiSquare(ban, i, M_SQUARE_WIDTH, M_SQUARE_HEIGHT);
             system_mochi[i] = 0;
         }
 
@@ -35,7 +35,6 @@ public class MochiSpace {
     }
 
     public void redraw(){
-        int koma;
         for(int i = 0;i < system_mochi.length;++i){
             if(system_mochi[i] != 0) {
                 if (who_am_i) {

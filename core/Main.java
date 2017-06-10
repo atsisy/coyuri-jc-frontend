@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -25,16 +27,13 @@ public class Main extends Application {
         stage.setWidth(1366);
         stage.setHeight(768);
 
-        /*
-        ArrayList<String> bin_command = new ArrayList<>();
-        bin_command.add("/home/takai/a.out");
-
-        ReadCoyuriBanmen.read_coyuri_input_stream(bin_command).forEach(System.out::println);
-        */
-
         AnchorPane root = new AnchorPane();
-        Banmen banmen = new Banmen();
 
+        Rectangle rect = new Rectangle(1366, 768);
+        rect.setFill(Color.BEIGE);
+        root.getChildren().add(rect);
+
+        Banmen banmen = new Banmen();
         banmen.register(root);
 
         Scene scene = new Scene(root);

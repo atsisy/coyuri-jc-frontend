@@ -30,6 +30,8 @@ public class Banmen {
     private Masume holding_koma_s_masume;
     private long tesuu;
     private boolean ready_to_ai;
+    private MochiSpace ai_mochi;
+    private MochiSpace pl_mochi;
 
     public Banmen(){
 
@@ -87,6 +89,9 @@ public class Banmen {
             redraw(i, 7, HU);
         }
 
+        ai_mochi = new MochiSpace(true);
+        pl_mochi = new MochiSpace(false);
+
     }
 
     void redraw(int x, int y, int koma_type){
@@ -115,6 +120,9 @@ public class Banmen {
                 AnchorPane.setTopAnchor(ban[x][y].getCanvas(), (y * M_SQUARE_HEIGHT) + TOP_FROM_BANMEN);
             }
         }
+
+        ai_mochi.register(root);
+        pl_mochi.register(root);
     }
 
     public void mark_target(ArrayList<Masume> list){
@@ -175,9 +183,9 @@ public class Banmen {
                 printWriter.print('\n');
             }
 
+
             //flush
             printWriter.close();
-
 
         }catch (IOException e){
             e.printStackTrace();

@@ -39,6 +39,7 @@ public class MochiSpace {
             if(system_mochi[i] != 0) {
                 if (who_am_i) {
                     spaces[i].drawImage(Main.image.getImage(i + 2));
+                    spaces[i].update_score(system_mochi[i]);
                 }else{
                     spaces[i].drawImage(Main.image.getImage(i + EN_HU));
                 }
@@ -52,8 +53,11 @@ public class MochiSpace {
         if(who_am_i) {
             for (int i = 0; i < 7; i++) {
                 root.getChildren().add(spaces[i].getCanvas());
+                root.getChildren().add(spaces[i].getCountLabel());
                 AnchorPane.setLeftAnchor(spaces[i].getCanvas(), (i * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM + (M_SQUARE_WIDTH * 9) + 10);
                 AnchorPane.setTopAnchor(spaces[i].getCanvas(), TOP_FROM_PL_MOCHI);
+                AnchorPane.setLeftAnchor(spaces[i].getCountLabel(), (i * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM + (M_SQUARE_WIDTH * 9) + 10);
+                AnchorPane.setTopAnchor(spaces[i].getCountLabel(), TOP_FROM_PL_MOCHI + M_SQUARE_HEIGHT);
             }
         }else{
             for (int i = 0; i < 7; i++) {
@@ -89,6 +93,15 @@ public class MochiSpace {
             system_mochi[type - HU]++;
         }else{
             system_mochi[type - EN_HU]++;
+        }
+    }
+
+    void add_koma_for_java(int type){
+        if (who_am_i){
+            if (type >= TOKIN){
+                type -= (KAKU - HU);
+            }
+            system_mochi[type - HU]++;
         }
     }
 

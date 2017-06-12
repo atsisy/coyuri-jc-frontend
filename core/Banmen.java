@@ -248,7 +248,7 @@ public class Banmen {
             return;
         }
         if(system_ban[9 - masume.getX()][masume.getY() - 1] != EMPTY){
-            pl_mochi.add_koma(system_ban[9 - masume.getX()][masume.getY() - 1] - (EN_HU - HU));
+            pl_mochi.add_koma_for_java(system_ban[9 - masume.getX()][masume.getY() - 1] - (EN_HU - HU));
             pl_mochi.redraw();
         }
         system_ban[9 - masume.getX()][masume.getY() - 1] = holding_koma;

@@ -24,7 +24,7 @@ public class MochiSpace {
         system_mochi = new int[7];
 
         for(int i = 0;i < 7;++i){
-            spaces[i] = new MochiSquare(ban, i, M_SQUARE_WIDTH, M_SQUARE_HEIGHT);
+            spaces[i] = new MochiSquare(ban, i + HU, M_SQUARE_WIDTH, M_SQUARE_HEIGHT);
             system_mochi[i] = 0;
         }
 
@@ -111,4 +111,8 @@ public class MochiSpace {
         }
     }
 
+    public void edit_system_mochi_element(int type, int val) {
+        system_mochi[type - HU] += val;
+        spaces[type - HU].update_score(system_mochi[type - HU]);
+    }
 }

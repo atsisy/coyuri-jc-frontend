@@ -252,8 +252,11 @@ public class Banmen {
             pl_mochi.redraw();
         }
         system_ban[9 - masume.getX()][masume.getY() - 1] = holding_koma;
-        system_ban[9 - holding_koma_s_masume.getX()][holding_koma_s_masume.getY() - 1] = EMPTY;
-
+        if(holding_koma_s_masume.getX() != -1) {
+            system_ban[9 - holding_koma_s_masume.getX()][holding_koma_s_masume.getY() - 1] = EMPTY;
+        }else{
+            pl_mochi.edit_system_mochi_element(holding_koma, -1);
+        }
     }
 
     void clear_holding(){

@@ -1,5 +1,6 @@
 package core;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static config.Values.*;
@@ -324,6 +325,35 @@ public class Wcm {
         }
 
         return result;
+    }
+
+    public static ArrayList<Masume> mochigoma_nihu_wcm(Banmen ban){
+        ArrayList<Masume> points = new ArrayList<>();
+        boolean nihu = false;
+
+        for (int x = 1; x <= 9; x++) {
+            for (int y = 1; y <= 9; y++) {
+                if (ban.get_system_ban_value(x, y) == HU) {
+				/*
+				*歩があった
+				*/
+                    nihu = true;
+                }
+            }
+            if (!nihu) {
+			/*
+			*歩が見つからない場合、その一行を追加
+			*/
+                for (int y = 2; y <= 9; y++) {
+                    if (ban.get_system_ban_value(x, y) == EMPTY && ban.get_system_ban_value(x, y + 1) != EN_OU) {
+                        points.add(new Masume(x, y));
+                    }
+                }
+            }
+            nihu = false;
+        }
+
+        return points;
     }
 
 

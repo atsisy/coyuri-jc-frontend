@@ -251,7 +251,7 @@ public class Banmen {
             return;
         }
 
-        if (masume.getY() <= 3){
+        if (masume.getY() <= 3 && holding_koma >= HU && holding_koma <= KAKU && holding_koma != KIN){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("成りますか？");
             alert.setTitle("成り判定");

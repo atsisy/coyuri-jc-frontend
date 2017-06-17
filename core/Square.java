@@ -65,6 +65,22 @@ public class Square extends SquareLayer {
                         ban.mark_target(Wcm.pl_kaku_wcm(ban, masume));
                         ban.hold_koma(KAKU, masume);
                         break;
+                    case TOKIN:
+                        ban.mark_target(Wcm.pl_kin_wcm(ban, masume));
+                        ban.hold_koma(KIN, masume);
+                        break;
+                    case NARIKYOU:
+                        ban.mark_target(Wcm.pl_kin_wcm(ban, masume));
+                        ban.hold_koma(KIN, masume);
+                        break;
+                    case NARIKEI:
+                        ban.mark_target(Wcm.pl_kin_wcm(ban, masume));
+                        ban.hold_koma(KIN, masume);
+                        break;
+                    case NARIGIN:
+                        ban.mark_target(Wcm.pl_kin_wcm(ban, masume));
+                        ban.hold_koma(KIN, masume);
+                        break;
                     case RYU:
                         ban.mark_target(Wcm.pl_ryu_wcm(ban, masume));
                         ban.hold_koma(RYU, masume);

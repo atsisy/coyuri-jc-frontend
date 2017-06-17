@@ -3,6 +3,8 @@ package core;
 import config.Values;
 import javafx.application.Platform;
 import javafx.event.Event;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -12,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -247,6 +250,19 @@ public class Banmen {
         if(!is_holding()){
             return;
         }
+
+        if (masume.getY() <= 3){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("成りますか？");
+            alert.setTitle("成り判定");
+            alert.setContentText("" + holding_koma);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                holding_koma = Naru.naru(holding_koma);
+            }
+        }
+
         if(system_ban[9 - masume.getX()][masume.getY() - 1] != EMPTY){
             pl_mochi.add_koma_for_java(system_ban[9 - masume.getX()][masume.getY() - 1] - (EN_HU - HU));
             pl_mochi.redraw();

@@ -2,6 +2,8 @@ package core;
 
 import javafx.scene.control.Label;
 
+import static config.Values.HU;
+
 /**
  * Created by Akihiro on 2017/06/10.
  */
@@ -23,7 +25,11 @@ public class MochiSquare extends SquareLayer {
             }
             ban.clear_target_mark();
             ban.hold_koma(koma_type, new Masume(-1, -1));
-            ban.mark_target(Wcm.mochigoma_wcm(ban));
+            if(koma_type == HU){
+                ban.mark_target(Wcm.mochigoma_nihu_wcm(ban));
+            }else {
+                ban.mark_target(Wcm.mochigoma_wcm(ban));
+            }
         });
     }
 

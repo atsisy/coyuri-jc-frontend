@@ -23,6 +23,7 @@ public class ReadCoyuriBanmen {
                 process.waitFor();
             }catch (Exception e){
                 System.err.println(e);
+                System.exit(-1);
             }
             InputStream is = process.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -37,10 +38,12 @@ public class ReadCoyuriBanmen {
                 }while(true);
             }catch (Exception e){
                 System.err.println(e);
+                System.exit(-1);
             }
 
         }catch (IOException e){
             System.err.println(e);
+            System.exit(-1);
         }
 
         return result;

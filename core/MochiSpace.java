@@ -92,7 +92,10 @@ public class MochiSpace {
         if(who_am_i) {
             system_mochi[type - HU]++;
         }else{
-            system_mochi[type - EN_HU]++;
+            if(type > EN_TOKIN){
+
+            }
+            system_mochi[Naru.reset_koma(type) - EN_HU]++;
         }
     }
 

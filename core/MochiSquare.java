@@ -33,6 +33,18 @@ public class MochiSquare extends SquareLayer {
         });
     }
 
+    public String toString(){
+        StringBuffer buffer = new StringBuffer();
+        int num = Integer.valueOf(count_label.getText());
+
+        for(int i = 0;i < num;++i){
+            buffer.append(" ");
+            buffer.append(koma_type);
+        }
+
+        return buffer.toString();
+    }
+
     public void update_score(int count){
         count_label.setText(String.valueOf(count));
     }

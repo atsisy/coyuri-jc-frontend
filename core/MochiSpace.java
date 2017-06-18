@@ -43,6 +43,7 @@ public class MochiSpace {
                     spaces[i].update_score(system_mochi[i]);
                 }else{
                     spaces[i].drawImage(Main.image.getImage(i + EN_HU));
+                    spaces[i].update_score(system_mochi[i]);
                 }
             }else{
                 spaces[i].drawImage(Main.image.getImage(EMPTY));
@@ -63,8 +64,11 @@ public class MochiSpace {
         }else{
             for (int i = 0; i < 7; i++) {
                 root.getChildren().add(spaces[i].getCanvas());
+                root.getChildren().add(spaces[i].getCountLabel());
                 AnchorPane.setLeftAnchor(spaces[i].getCanvas(), (i * M_SQUARE_WIDTH) + 10);
                 AnchorPane.setTopAnchor(spaces[i].getCanvas(), TOP_FROM_BANMEN);
+                AnchorPane.setLeftAnchor(spaces[i].getCountLabel(), (i * M_SQUARE_WIDTH) + 10);
+                AnchorPane.setTopAnchor(spaces[i].getCountLabel(), M_SQUARE_HEIGHT);
             }
         }
     }
@@ -149,6 +153,7 @@ public class MochiSpace {
     public void clear(){
         for(int i = 0;i < 7;i++){
             system_mochi[i] = 0;
+            spaces[i].update_score(0);
         }
     }
 

@@ -88,6 +88,7 @@ public class Square extends SquareLayer {
                     case UMA:
                         ban.mark_target(Wcm.pl_uma_wcm(ban, masume));
                         ban.hold_koma(UMA, masume);
+                        break;
                     case OU:
                         ban.mark_target(Wcm.pl_ou_wcm(ban, masume));
                         ban.hold_koma(OU, masume);

@@ -1,5 +1,6 @@
 package core;
 
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 
 import static config.Values.*;
@@ -90,13 +91,50 @@ public class MochiSpace {
 
     public void add_koma(int type){
         if(who_am_i) {
-            system_mochi[type - HU]++;
+            system_mochi[koma_to_index(type)]++;
         }else{
-            if(type > EN_TOKIN){
-
+            if(type == EN_OU){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("将棋少女　勝敗");
+                alert.setHeaderText("あなたの勝利です。");
+                alert.setContentText("");
             }
-            system_mochi[Naru.reset_koma(type) - EN_HU]++;
+            system_mochi[koma_to_index(Naru.reset_koma(type))]++;
         }
+    }
+
+    private int koma_to_index(int type){
+        switch (type){
+            case HU:
+                return 0;
+            case KYOUSHA:
+                return 1;
+            case KEIMA:
+                return 2;
+            case GIN:
+                return 3;
+            case KIN:
+                return 4;
+            case HISHA:
+                return 5;
+            case KAKU:
+                return 6;
+            case EN_HU:
+                return 0;
+            case EN_KYOUSHA:
+                return 1;
+            case EN_KEIMA:
+                return 2;
+            case EN_GIN:
+                return 3;
+            case EN_KIN:
+                return 4;
+            case EN_HISHA:
+                return 5;
+            case EN_KAKU:
+                return 6;
+        }
+        return type;
     }
 
     void add_koma_for_java(int type){

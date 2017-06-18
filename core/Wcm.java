@@ -345,7 +345,7 @@ public class Wcm {
 			*歩が見つからない場合、その一行を追加
 			*/
                 for (int y = 2; y <= 9; y++) {
-                    if (ban.get_system_ban_value(x, y) == EMPTY && ban.get_system_ban_value(x, y + 1) != EN_OU) {
+                    if (ban.get_system_ban_value(x, y) == EMPTY && ban.get_system_ban_value(x, y - 1) != EN_OU) {
                         points.add(new Masume(x, y));
                     }
                 }

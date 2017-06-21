@@ -152,7 +152,7 @@ public class Wcm {
 
         //左斜め後ろ
         if(isMovable(ban, new Masume(masume.getX() + 1, masume.getY() + 1))){
-            result.add(new Masume(masume.getX() + 1, masume.getY() * 1));
+            result.add(new Masume(masume.getX() + 1, masume.getY() + 1));
         }
 
         //後ろ

@@ -47,7 +47,7 @@ public class Values {
     public static final double M_SQUARE_WIDTH = 56;
     public static final double M_SQUARE_HEIGHT = 56;
 
-    public static final double TOP_FROM_BANMEN = 80;
+    public static final double TOP_FROM_BANMEN = 100;
     public static final double LEFT_FROM_BANMEM = 420;
 
     public static final double TOP_FROM_PL_MOCHI = M_SQUARE_HEIGHT * 8 + TOP_FROM_BANMEN;

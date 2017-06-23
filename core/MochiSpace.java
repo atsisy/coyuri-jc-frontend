@@ -56,19 +56,19 @@ public class MochiSpace {
             for (int i = 0; i < 7; i++) {
                 root.getChildren().add(spaces[i].getCanvas());
                 root.getChildren().add(spaces[i].getCountLabel());
-                AnchorPane.setLeftAnchor(spaces[i].getCanvas(), (i * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM + (M_SQUARE_WIDTH * 9) + 10);
-                AnchorPane.setTopAnchor(spaces[i].getCanvas(), TOP_FROM_PL_MOCHI);
-                AnchorPane.setLeftAnchor(spaces[i].getCountLabel(), (i * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM + (M_SQUARE_WIDTH * 9) + 10);
-                AnchorPane.setTopAnchor(spaces[i].getCountLabel(), TOP_FROM_PL_MOCHI + M_SQUARE_HEIGHT);
+                AnchorPane.setLeftAnchor(spaces[i].getCanvas(), ((i + 1) * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM);
+                AnchorPane.setTopAnchor(spaces[i].getCanvas(), TOP_FROM_PL_MOCHI + M_SQUARE_HEIGHT + 10);
+                AnchorPane.setLeftAnchor(spaces[i].getCountLabel(), ((i + 1) * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM);
+                AnchorPane.setTopAnchor(spaces[i].getCountLabel(), TOP_FROM_PL_MOCHI + (M_SQUARE_HEIGHT * 2) + 10);
             }
         }else{
             for (int i = 0; i < 7; i++) {
                 root.getChildren().add(spaces[i].getCanvas());
                 root.getChildren().add(spaces[i].getCountLabel());
-                AnchorPane.setLeftAnchor(spaces[i].getCanvas(), (i * M_SQUARE_WIDTH) + 10);
-                AnchorPane.setTopAnchor(spaces[i].getCanvas(), TOP_FROM_BANMEN);
-                AnchorPane.setLeftAnchor(spaces[i].getCountLabel(), (i * M_SQUARE_WIDTH) + 10);
-                AnchorPane.setTopAnchor(spaces[i].getCountLabel(), M_SQUARE_HEIGHT);
+                AnchorPane.setLeftAnchor(spaces[i].getCanvas(), ((i + 1) * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM);
+                AnchorPane.setTopAnchor(spaces[i].getCanvas(), TOP_FROM_BANMEN - (10 + M_SQUARE_HEIGHT));
+                AnchorPane.setLeftAnchor(spaces[i].getCountLabel(), ((i + 1) * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM);
+                AnchorPane.setTopAnchor(spaces[i].getCountLabel(), TOP_FROM_BANMEN - (M_SQUARE_HEIGHT + 27));
             }
         }
     }

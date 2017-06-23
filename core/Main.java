@@ -1,19 +1,18 @@
 package core;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import static config.Values.WINDOW_HEIGHT;
+import static config.Values.WINDOW_WIDTH;
 import static java.lang.Thread.sleep;
 
 /**
@@ -25,39 +24,36 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setWidth(1366);
-        stage.setHeight(768);
+        stage.setWidth(WINDOW_WIDTH);
+        stage.setHeight(WINDOW_HEIGHT);
 
         AnchorPane root = new AnchorPane();
 
-        Rectangle rect = new Rectangle(1366, 768);
+        Rectangle rect = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT);
         rect.setFill(Color.BEIGE);
         root.getChildren().add(rect);
 
         Banmen banmen = new Banmen();
         banmen.register(root);
 
+        Button run_ai_button = new Button("こゆりちゃんのターン");
+        run_ai_button.setFont(new Font("ゆたぽん（コーディング）Bold", 15));
+        run_ai_button.setOnAction(event -> {
+            if(banmen.is_ready_to_ai()) {
+                banmen.run_ai();
+                banmen.finish_ai();
+            }
+        });
+
+        AnchorPane.setRightAnchor(run_ai_button, 100.0);
+        AnchorPane.setTopAnchor(run_ai_button, WINDOW_HEIGHT / 1.5);
+        root.getChildren().add(run_ai_button);
+        run_ai_button.setMinWidth(100);
+        run_ai_button.setMinHeight(100);
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        Thread t = new Thread(() -> {
-            for (;;) {
-                Platform.runLater(() -> {
-                    if(banmen.is_ready_to_ai()) {
-                        banmen.run_ai();
-                        banmen.finish_ai();
-                    }
-                });
-                try {
-                    sleep(150);
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
-        });
-        t.setDaemon(true);
-        t.start();
 
     }
 

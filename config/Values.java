@@ -44,14 +44,16 @@ public class Values {
     public static final int EN_OU = 29;
     public static final int TEGOMA = 30;
 
+    public static final double WINDOW_WIDTH = 1100;
+    public static final double WINDOW_HEIGHT = 768;
+
     public static final double M_SQUARE_WIDTH = 56;
     public static final double M_SQUARE_HEIGHT = 56;
 
     public static final double TOP_FROM_BANMEN = 100;
-    public static final double LEFT_FROM_BANMEM = 420;
+    public static final double LEFT_FROM_BANMEM = (WINDOW_WIDTH - (9 * M_SQUARE_WIDTH)) / 2;
 
     public static final double TOP_FROM_PL_MOCHI = M_SQUARE_HEIGHT * 8 + TOP_FROM_BANMEN;
     public static final double LEFT_FROM_PL_MOCHI = 400;
-
 
 }

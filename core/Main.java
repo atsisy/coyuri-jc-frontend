@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 
 import static config.Values.WINDOW_HEIGHT;
@@ -54,6 +55,10 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        Window window = stage;
+        Stage furigoma = new FurigomaWindow(window);
+        furigoma.showAndWait();
 
     }
 

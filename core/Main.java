@@ -57,8 +57,13 @@ public class Main extends Application {
         stage.show();
 
         Window window = stage;
-        Stage furigoma = new FurigomaWindow(window);
+        FurigomaWindow furigoma = new FurigomaWindow(window);
         furigoma.showAndWait();
+
+        if (!furigoma.is_sente()){
+            banmen.run_ai();
+            banmen.finish_ai();
+        }
 
     }
 

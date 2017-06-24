@@ -22,6 +22,7 @@ import static java.lang.Thread.sleep;
 public class Main extends Application {
 
     public static final Images image = new Images();
+    static Label evalue_label = new Label("評価値 : -");
 
     @Override
     public void start(Stage stage) {
@@ -37,7 +38,7 @@ public class Main extends Application {
         Banmen banmen = new Banmen();
         banmen.register(root);
 
-        Button run_ai_button = new Button("こゆりちゃんのターン");
+        Button run_ai_button = new Button("AIのターン");
         run_ai_button.setFont(new Font("ゆたぽん（コーディング）Bold", 15));
         run_ai_button.setOnAction(event -> {
             if(banmen.is_ready_to_ai()) {
@@ -45,6 +46,11 @@ public class Main extends Application {
                 banmen.finish_ai();
             }
         });
+
+        AnchorPane.setLeftAnchor(evalue_label, 90.0);
+        AnchorPane.setTopAnchor(evalue_label, WINDOW_HEIGHT / 2);
+        evalue_label.setFont(new Font(30));
+        root.getChildren().add(evalue_label);
 
         AnchorPane.setRightAnchor(run_ai_button, 100.0);
         AnchorPane.setTopAnchor(run_ai_button, WINDOW_HEIGHT / 1.5);

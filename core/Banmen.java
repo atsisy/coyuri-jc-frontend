@@ -189,6 +189,12 @@ public class Banmen {
             pl_mochi.add_koma(Integer.valueOf(stringTokenizer.nextToken()));
         }
 
+        stringTokenizer = new StringTokenizer(list.get(y + 2));
+        stringTokenizer.nextToken();
+        while(stringTokenizer.hasMoreTokens()){
+            Main.evalue_label.setText("評価値 : " + stringTokenizer.nextToken());
+        }
+
         ai_mochi.redraw();
         pl_mochi.redraw();
     }

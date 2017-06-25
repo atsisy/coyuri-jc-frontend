@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+
 import static config.Values.WINDOW_HEIGHT;
 import static config.Values.WINDOW_WIDTH;
 import static java.lang.Thread.sleep;
@@ -23,6 +25,7 @@ public class Main extends Application {
 
     public static final Images image = new Images();
     static Label evalue_label = new Label("評価値 : -");
+    static ArrayList<BanmenData> banmen_history = new ArrayList<>();
 
     @Override
     public void start(Stage stage) {

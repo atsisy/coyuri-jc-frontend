@@ -35,6 +35,10 @@ public class MochiSpace {
 
     }
 
+    int at(int index){
+        return system_mochi[index];
+    }
+
     public void redraw(){
         for(int i = 0;i < system_mochi.length;++i){
             if(system_mochi[i] != 0) {

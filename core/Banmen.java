@@ -116,6 +116,10 @@ public class Banmen {
         return system_ban[9-x][y-1];
     }
 
+    public int get_system_ban_value_direct(int x, int y){
+        return system_ban[x][y];
+    }
+
     public void register(AnchorPane root){
         for(int x = 0;x < 9;x++){
             for(int y = 0;y < 9;y++){
@@ -136,6 +140,14 @@ public class Banmen {
         });
     }
 
+    public MochiSpace get_ai_mochi() {
+        return ai_mochi;
+    }
+
+    public MochiSpace get_pl_mochi() {
+        return pl_mochi;
+    }
+
     void clear_target_mark(){
         if(target_masume_list != null) {
             target_masume_list.forEach(masume -> {
@@ -150,6 +162,11 @@ public class Banmen {
                 redraw(x, y, system_ban[9 - x][y - 1]);
             }
         }
+        write_history();
+    }
+
+    void write_history(){
+        Main.banmen_history.add(new BanmenData(this));
     }
 
     void run_ai(){

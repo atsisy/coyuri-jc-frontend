@@ -96,6 +96,7 @@ public class Banmen {
         ai_mochi = new MochiSpace(this, false);
         pl_mochi = new MochiSpace(this, true);
 
+        write_history();
     }
 
     void redraw(int x, int y, int koma_type){
@@ -165,7 +166,17 @@ public class Banmen {
         write_history();
     }
 
-    void write_history(){
+    void simple_redraw(){
+        for (int y = 1; y <= 9; y++) {
+            for (int x = 1; x <= 9; x++) {
+                redraw(x, y, system_ban[9 - x][y - 1]);
+            }
+        }
+        ai_mochi.redraw();
+        pl_mochi.redraw();
+    }
+
+    private void write_history(){
         Main.banmen_history.add(new BanmenData(this));
     }
 
@@ -214,6 +225,19 @@ public class Banmen {
 
         ai_mochi.redraw();
         pl_mochi.redraw();
+    }
+
+    void restore(BanmenData data){
+        for(int x = 0;x < 9;x++){
+            for(int y = 0;y < 9;y++){
+                system_ban[x][y] = data.get_system_ban_value_direct_xy(x, y);
+            }
+        }
+
+        for(int x = 0;x < 7;x++){
+            ai_mochi.set_system_array_at(x, data.get_ai_mochi_at(x));
+            pl_mochi.set_system_array_at(x, data.get_pl_mochi_at(x));
+        }
     }
 
     private void write_data(){

@@ -1,7 +1,6 @@
 package core;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -10,13 +9,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.util.Duration;
-
 import java.util.ArrayList;
 
 import static config.Values.WINDOW_HEIGHT;
 import static config.Values.WINDOW_WIDTH;
-import static java.lang.Thread.sleep;
 
 /**
  * Created by Akihiro on 2017/05/21.
@@ -49,17 +45,43 @@ public class Main extends Application {
                 banmen.finish_ai();
             }
         });
-
-        AnchorPane.setLeftAnchor(evalue_label, 90.0);
-        AnchorPane.setTopAnchor(evalue_label, WINDOW_HEIGHT / 2);
-        evalue_label.setFont(new Font(30));
-        root.getChildren().add(evalue_label);
-
         AnchorPane.setRightAnchor(run_ai_button, 100.0);
         AnchorPane.setTopAnchor(run_ai_button, WINDOW_HEIGHT / 1.5);
         root.getChildren().add(run_ai_button);
         run_ai_button.setMinWidth(100);
         run_ai_button.setMinHeight(100);
+
+
+        Button matta_button = new Button("待った");
+        matta_button.setFont(new Font("ゆたぽん（コーディング）Bold", 15));
+        matta_button.setOnAction(event -> {
+            System.out.println(banmen_history.size());
+            if (banmen_history.size() > 1) {
+                if(banmen.is_ready_to_ai()){
+                    banmen.restore(banmen_history.get(banmen_history.size() - 2));
+                    banmen.simple_redraw();
+                    banmen_history.remove(banmen_history.size() - 1);
+                }else {
+                    if (banmen_history.size() > 2) {
+                        banmen.restore(banmen_history.get(banmen_history.size() - 3));
+                        banmen.simple_redraw();
+                        banmen_history.remove(banmen_history.size() - 1);
+                        banmen_history.remove(banmen_history.size() - 2);
+                    }
+                }
+            }
+        });
+        AnchorPane.setRightAnchor(matta_button, 100.0);
+        AnchorPane.setTopAnchor(matta_button, WINDOW_HEIGHT / 2);
+        root.getChildren().add(matta_button);
+        matta_button.setMinWidth(100);
+        matta_button.setMinHeight(100);
+
+
+        AnchorPane.setLeftAnchor(evalue_label, 90.0);
+        AnchorPane.setTopAnchor(evalue_label, WINDOW_HEIGHT / 2);
+        evalue_label.setFont(new Font(30));
+        root.getChildren().add(evalue_label);
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

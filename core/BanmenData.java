@@ -29,5 +29,17 @@ public class BanmenData {
 
     }
 
+    int get_system_ban_value_direct_xy(int x, int y){
+        return system_ban[x][y];
+    }
+
+    int get_ai_mochi_at(int index){
+        return ai_system_mochi[index];
+    }
+
+    int get_pl_mochi_at(int index){
+        return pl_system_mochi[index];
+    }
+
 
 }

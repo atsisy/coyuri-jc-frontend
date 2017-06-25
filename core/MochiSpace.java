@@ -39,7 +39,7 @@ public class MochiSpace {
         return system_mochi[index];
     }
 
-    public void redraw(){
+    void redraw(){
         for(int i = 0;i < system_mochi.length;++i){
             if(system_mochi[i] != 0) {
                 if (who_am_i) {
@@ -55,7 +55,11 @@ public class MochiSpace {
         }
     }
 
-    public void register(AnchorPane root){
+    void set_system_array_at(int index, int value){
+        system_mochi[index] = value;
+    }
+
+    void register(AnchorPane root){
         if(who_am_i) {
             for (int i = 0; i < 7; i++) {
                 root.getChildren().add(spaces[i].getCanvas());
@@ -154,14 +158,14 @@ public class MochiSpace {
         }
     }
 
-    public void clear(){
+    void clear(){
         for(int i = 0;i < 7;i++){
             system_mochi[i] = 0;
             spaces[i].update_score(0);
         }
     }
 
-    public void edit_system_mochi_element(int type, int val) {
+    void edit_system_mochi_element(int type, int val) {
         system_mochi[type - HU] += val;
         spaces[type - HU].update_score(system_mochi[type - HU]);
     }

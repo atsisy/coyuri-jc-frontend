@@ -19,6 +19,9 @@ public class Square extends SquareLayer {
         super(width, height);
 
         canvas.setOnMouseClicked(event -> {
+            if(ban.is_ready_to_ai()){
+                return;
+            }
             if(ban.is_targeted(masume)){
                 //内部データを動かした状態にする。
                 ban.move(masume);

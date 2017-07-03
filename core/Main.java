@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import java.util.ArrayList;
 
-import static config.Values.WINDOW_HEIGHT;
-import static config.Values.WINDOW_WIDTH;
+import static config.Values.*;
 
 /**
  * Created by Akihiro on 2017/05/21.
@@ -22,6 +21,16 @@ public class Main extends Application {
     public static final Images image = new Images();
     static Label evalue_label = new Label("評価値 : -");
     static ArrayList<BanmenData> banmen_history = new ArrayList<>();
+    static final Label cols_numbers = new Label("" +
+            "9               " +
+            "8               " +
+            "7               " +
+            "6               " +
+            "5               " +
+            "4               " +
+            "3               " +
+            "2               " +
+            "1");
 
     @Override
     public void start(Stage stage) {
@@ -76,6 +85,10 @@ public class Main extends Application {
         root.getChildren().add(matta_button);
         matta_button.setMinWidth(100);
         matta_button.setMinHeight(100);
+
+        root.getChildren().add(cols_numbers);
+        AnchorPane.setLeftAnchor(cols_numbers, LEFT_FROM_BANMEM + (M_SQUARE_WIDTH / 2));
+        AnchorPane.setTopAnchor(cols_numbers, TOP_FROM_BANMEN - 20);
 
 
         AnchorPane.setLeftAnchor(evalue_label, 90.0);

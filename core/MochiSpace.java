@@ -74,9 +74,9 @@ public class MochiSpace {
                 root.getChildren().add(spaces[i].getCanvas());
                 root.getChildren().add(spaces[i].getCountLabel());
                 AnchorPane.setLeftAnchor(spaces[i].getCanvas(), ((i + 1) * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM);
-                AnchorPane.setTopAnchor(spaces[i].getCanvas(), TOP_FROM_BANMEN - (10 + M_SQUARE_HEIGHT));
+                AnchorPane.setTopAnchor(spaces[i].getCanvas(), TOP_FROM_BANMEN - (20 + M_SQUARE_HEIGHT));
                 AnchorPane.setLeftAnchor(spaces[i].getCountLabel(), ((i + 1) * M_SQUARE_WIDTH) + LEFT_FROM_BANMEM);
-                AnchorPane.setTopAnchor(spaces[i].getCountLabel(), TOP_FROM_BANMEN - (M_SQUARE_HEIGHT + 27));
+                AnchorPane.setTopAnchor(spaces[i].getCountLabel(), TOP_FROM_BANMEN - (M_SQUARE_HEIGHT + 37));
             }
         }
     }

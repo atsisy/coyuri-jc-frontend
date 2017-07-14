@@ -43,7 +43,7 @@ public class Naru {
             case NARIKEI:
                 return KEIMA;
             case NARIGIN:
-                return NARIGIN;
+                return GIN;
             case RYU:
                 return HISHA;
             case UMA:
@@ -55,7 +55,7 @@ public class Naru {
             case EN_NARIKEI:
                 return EN_KEIMA;
             case EN_NARIGIN:
-                return EN_NARIGIN;
+                return EN_GIN;
             case EN_RYU:
                 return EN_HISHA;
             case EN_UMA:
